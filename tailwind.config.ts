@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import typography from "@tailwindcss/typography"; // 👈 ESM import
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   darkMode: "class",
@@ -8,8 +8,9 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: { extend: {} },
-  plugins: [typography], // 👈 no require()
+  theme: {
+    extend: {},
+  },
+  plugins: [typography],
 };
-
 export default config;
