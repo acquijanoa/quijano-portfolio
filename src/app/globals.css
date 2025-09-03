@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -18,9 +23,62 @@
     --foreground: #ededed;
   }
 }
+/* Optional global baseline */
+:where(a, button, [role="button"]) {
+  outline: none;
+}
+:where(a, button, [role="button"]):focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px rgb(51 65 85); /* slate-700 */
+  border-radius: 6px;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Refined defaults */
+:root {
+  --radius: 16px;
+}
+
+/* Smoother text */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* Card baseline */
+.card {
+  border-radius: var(--radius);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: white;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -12px rgba(15, 23, 42, 0.35);
+}
+/* Dark */
+:root.dark .card {
+  background: rgb(2 6 23); /* slate-950 */
+  border-color: rgba(148, 163, 184, 0.2); /* slate-400/20 */
+}
+:root.dark .card:hover {
+  box-shadow: 0 8px 28px -14px rgba(0, 0, 0, 0.6);
+}
+
+/* Prose tuning */
+.prose :where(h1,h2,h3){ letter-spacing:-0.02em }
+.prose p { line-height: 1.7; }
+
+/* Smoother GPU-accelerated transforms */
+.will-change-transform { will-change: transform; }
+
+/* Prefer reduced motion users: keep transitions subtle */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
